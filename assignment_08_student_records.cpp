@@ -82,4 +82,68 @@
 #include <string>
 #include <iomanip>
 using namespace std;
+// ---------------------------------------------------------------------------
+// Struct to represent a student record
+// ---------------------------------------------------------------------------
+struct Student {
+    string name;
+    int id;
+    vector<double> scores;
+};
+
+// ---------------------------------------------------------------------------
+// Function to calculate a student's average score
+// ---------------------------------------------------------------------------
+double calculateAverage(const Student &s) {
+    if (s.scores.empty()) return 0.0;
+    double sum = 0;
+    for (double score : s.scores) {
+        sum += score;
+    }
+    return sum / s.scores.size();
+}
+
+// ---------------------------------------------------------------------------
+// Function to add a student
+// ---------------------------------------------------------------------------
+void addStudent(vector<Student> &students) {
+    Student s;
+    cin.ignore();
+    cout << "Student name: ";
+    getline(cin, s.name);
+    cout << "Student ID: ";
+    cin >> s.id;
+
+    int numScores;
+    cout << "How many scores? ";
+    cin >> numScores;
+
+    for (int i = 0; i < numScores; i++) {
+        double score;
+        cout << "Enter score " << (i + 1) << ": ";
+        cin >> score;
+        s.scores.push_back(score);
+    }
+
+    students.push_back(s);
+    cout << "Student \"" << s.name << "\" added successfully." << endl;
+}
+
+// ---------------------------------------------------------------------------
+// Function to display all students
+// ---------------------------------------------------------------------------
+void displayStudents(const vector<Student> &students) {
+    if (students.empty()) {
+        cout << "No students have been added yet." << endl;
+        return;
+    }
+
+    cout << left << setw(20) << "Name" << setw(12) << "ID"
+         << setw(20) << "Scores" << setw(10) << "Average" << endl;
+
+    for (const Student &s : students) {
+        cout << left << setw(20) << s.name << setw(12) << s.id;
+
+        string scoreList = "";
+        for (size_t i = 0; i
 
