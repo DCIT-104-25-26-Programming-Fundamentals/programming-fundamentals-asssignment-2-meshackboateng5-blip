@@ -64,4 +64,94 @@
 #include <iomanip>
 #include <string>
 using namespace std;
+// ============================================================================
+// PROGRAMMING FUNDAMENTALS - Assignment 4
+// ============================================================================
+// TASK: Matrix Operations
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+const int MAX = 10;
+
+// ---------------------------------------------------------------------------
+// Function to read a matrix from the user
+// ---------------------------------------------------------------------------
+void readMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << "Enter element [" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Function to display a matrix neatly using setw()
+// ---------------------------------------------------------------------------
+void displayMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << setw(6) << matrix[i][j];
+        }
+        cout << endl;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// PART A - Transpose a Matrix
+// ---------------------------------------------------------------------------
+void transposeMatrix(int matrix[MAX][MAX], int rows, int cols, int result[MAX][MAX]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// PART B - Add Two Matrices
+// ---------------------------------------------------------------------------
+void addMatrices(int a[MAX][MAX], int b[MAX][MAX], int rows, int cols, int result[MAX][MAX]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = a[i][j] + b[i][j];
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// PART C - Multiply Two Matrices
+// ---------------------------------------------------------------------------
+void multiplyMatrices(int a[MAX][MAX], int b[MAX][MAX], int m, int n, int p, int result[MAX][MAX]) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                result[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// MAIN
+// ---------------------------------------------------------------------------
+int main() {
+    int matrix[MAX][MAX], result[MAX][MAX];
+    int rows, cols;
+
+    // PART A - Transpose
+    cout << "=== PART A: Transpose a Matrix ===" << endl;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    readMatrix(matrix, rows, cols);
+    transposeMatrix(matrix, rows, cols, result);
+
+    cout << "\nOriginal Matrix:" <
 
